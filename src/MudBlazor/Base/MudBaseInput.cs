@@ -91,6 +91,13 @@ namespace MudBlazor
         public Adornment Adornment { get; set; } = Adornment.None;
 
         /// <summary>
+        /// The Adornment if used. By default, it is set to None.
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Behavior)]
+        public Align Alignment { get; set; } = Align.Inherit;
+
+        /// <summary>
         /// The validation is only triggered if the user has changed the input value at least once. By default, it is false
         /// </summary>
         [Parameter]

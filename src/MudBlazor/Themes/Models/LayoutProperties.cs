@@ -5,7 +5,7 @@ namespace MudBlazor
 {
     public class LayoutProperties
     {
-        public string DefaultBorderRadius { get; set; } = "4px";
+        public string DefaultBorderRadius { get; set; } = "4px !important";
         [Obsolete("DrawerWidth has been removed.", true)]
         public string DrawerWidth { get; set; } = null;
         public string DrawerMiniWidthLeft { get; set; } = "56px";
