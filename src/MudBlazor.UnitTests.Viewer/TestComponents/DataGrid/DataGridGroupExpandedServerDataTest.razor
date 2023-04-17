@@ -1,6 +1,6 @@
 @namespace MudBlazor.UnitTests.TestComponents
 
-<MudDataGrid @ref="dataGrid" Items="@Fruits" Filterable="true" Hideable="true" Groupable="true"
+<MudDataGrid @ref="dataGrid" T="Fruit" ServerData="ServerDataFunc" Filterable="true" Hideable="true" Groupable="true"
     GroupExpanded="true">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Fruits</MudText>
@@ -29,11 +29,21 @@
 
     List<Fruit> Fruits { get; set; } = new()
     {
-        new Fruit("Apple", 2, "Pome"),
-        new Fruit("Pear", 4, "Pome"),
-        new Fruit("Orange", 4, "Citrus")
+        new("Apple", 2, "Pome"),
+        new("Pear", 4, "Pome"),
+        new("Orange", 4, "Citrus")
     };
-    
+
+    private async Task<GridData<Fruit>> ServerDataFunc(GridState<Fruit> gridState)
+    {
+        await Task.Delay(100);
+        return new GridData<Fruit>
+        {
+            Items = Fruits,
+            TotalItems = Fruits.Count()
+        };
+    }
+
     Func<Fruit, object> _groupBy = x => 
     {
         return x.Category;
