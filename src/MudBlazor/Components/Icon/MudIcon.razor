@@ -1,7 +1,11 @@
 ﻿@namespace MudBlazor
 @inherits MudComponentBase
 
-@if (!string.IsNullOrEmpty(Icon) && Icon.Trim().StartsWith("<"))
+@if (IconPath != null)
+{
+    <img src="@IconPath" class="@($"{Classname} {Icon}")" style="@Style" title="@Title" />
+}
+else if (!string.IsNullOrEmpty(Icon) && Icon.Trim().StartsWith("<"))
 {
     <svg @attributes="UserAttributes" class="@Classname" style="@Style" focusable="false" viewBox="@ViewBox" aria-hidden="true">
         @if (Title != null)
