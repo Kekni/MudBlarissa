@@ -10,9 +10,9 @@
                  @attributes="@Attributes"
                  Match="@Match" 
                  ActiveClass="@ActiveClass">
-            @if (!string.IsNullOrEmpty(Icon) || !string.IsNullOrEmpty(IconPath))
+            @if (!string.IsNullOrEmpty(Icon))
             {
-                <MudIcon Icon="@Icon" IconPath="@IconPath" Color="@IconColor" Class="@IconClassname" />
+                <MudIcon Icon="@Icon" Color="@IconColor" Class="@IconClassname" />
             }
             <div class="mud-nav-link-text">
                 @ChildContent
@@ -24,9 +24,9 @@
         <div @onclick="OnClickHandler"
              class="@LinkClassname"
              ActiveClass="@ActiveClass">
-            @if (!string.IsNullOrEmpty(Icon) || !string.IsNullOrEmpty(IconPath))
+            @if (!string.IsNullOrEmpty(Icon))
             {
-                <MudIcon Icon="@Icon" Color="@IconColor" IconPath="@IconPath" Class="@IconClassname" />
+                <MudIcon Icon="@Icon" Color="@IconColor" Class="@IconClassname" />
             }
             <div Class="mud-nav-link-text">
                 @ChildContent

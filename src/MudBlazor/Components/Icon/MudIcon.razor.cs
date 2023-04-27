@@ -23,15 +23,6 @@ namespace MudBlazor
         public string? Icon { get; set; }
 
         /// <summary>
-        /// File path to be used as src for <img> tag.
-        /// If used parameter Icon is ignored.
-        /// </summary>
-        [Parameter]
-        [Category(CategoryTypes.Icon.Behavior)]
-        public string? IconPath { get; set; }
-
-
-        /// <summary>
         /// Title of the icon used for accessibility.
         /// </summary>
         [Parameter]
