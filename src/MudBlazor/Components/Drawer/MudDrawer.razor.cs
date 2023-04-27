@@ -265,7 +265,7 @@ namespace MudBlazor
             if (firstRender)
             {
                 await UpdateHeight();
-                var result = await Breakpointistener.Subscribe(UpdateBreakpointState);
+                var result = await Breakpointistener.SubscribeAsync(UpdateBreakpointState);
                 var currentBreakpoint = result.Breakpoint;
 
                 _breakpointListenerSubscriptionId = result.SubscriptionId;
@@ -304,7 +304,7 @@ namespace MudBlazor
 
                     if (_breakpointListenerSubscriptionId != default)
                     {
-                        Breakpointistener.Unsubscribe(_breakpointListenerSubscriptionId).AndForget();
+                        Breakpointistener.UnsubscribeAsync(_breakpointListenerSubscriptionId).AndForget();
                     }
                 }
             }
