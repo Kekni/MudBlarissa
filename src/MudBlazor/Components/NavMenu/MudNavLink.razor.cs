@@ -65,6 +65,13 @@ namespace MudBlazor
         [Category(CategoryTypes.ComponentBase.Common)]
         public string ActiveClass { get; set; } = "active";
 
+        /// <summary>
+        /// If value is provided, this html color string overrides the color of the front icon
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.NavMenu.Behavior)]
+        public string? ColorOverride { get; set; } = null;
+
         [CascadingParameter] INavigationEventReceiver NavigationEventReceiver { get; set; }
 
         protected Task HandleNavigation()

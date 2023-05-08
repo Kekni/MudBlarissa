@@ -12,7 +12,7 @@
                  ActiveClass="@ActiveClass">
             @if (!string.IsNullOrEmpty(Icon))
             {
-                <MudIcon Icon="@Icon" Color="@IconColor" Class="@IconClassname" />
+                <MudIcon Icon="@Icon" Color="@IconColor" Class="@IconClassname" ColorOverride="@ColorOverride" />
             }
             <div class="mud-nav-link-text">
                 @ChildContent

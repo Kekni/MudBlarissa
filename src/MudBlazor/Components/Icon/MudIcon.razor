@@ -8,8 +8,19 @@
         {
             <title>@Title</title>
         }
+        @if (ColorOverride != null)
+        {
+            <g stroke="@ColorOverride">
+                @((MarkupString)Icon)
+            </g>
+        }
+        else
+        {
+            @((MarkupString)Icon)
+        }
 
-        @((MarkupString)Icon)
+
+        
     </svg>
 }
 else

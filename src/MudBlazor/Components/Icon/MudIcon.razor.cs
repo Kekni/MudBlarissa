@@ -56,5 +56,11 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Icon.Behavior)]
         public RenderFragment? ChildContent { get; set; }
+        /// <summary>
+        /// If value is provided, this html color string overrides the color of the icon
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.Icon.Behavior)]
+        public string? ColorOverride { get; set; } = null;
     }
 }

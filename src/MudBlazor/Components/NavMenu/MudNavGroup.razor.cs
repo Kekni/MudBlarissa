@@ -102,7 +102,14 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.NavMenu.Appearance)]
         public string ExpandIcon { get; set; } = @Icons.Material.Filled.ArrowDropDown;
-        
+        /// <summary>
+        /// If value is provided, this html color string overrides the color of the front icon
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.NavMenu.Behavior)]
+        public string? ColorOverride { get; set; } = null;
+
+
         [Parameter]
         [Category(CategoryTypes.NavMenu.Behavior)]
         public RenderFragment ChildContent { get; set; }
