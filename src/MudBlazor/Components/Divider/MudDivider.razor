@@ -2,10 +2,10 @@
 @using MudBlazor.Utilities
 @inherits MudComponentBase
 
-<hr @attributes="UserAttributes" class="@Classname" style="@Style"/>
+<hr @attributes="UserAttributes" class="@Classname" style="@NewStyle" />
 
 @code {
-#nullable enable
+    #nullable enable
     protected string Classname =>
         new CssBuilder("mud-divider")
             .AddClass("mud-divider-absolute", Absolute)
@@ -50,5 +50,18 @@
     [Parameter] 
     [Category(CategoryTypes.Divider.Appearance)]
     public DividerType DividerType { get; set; } = DividerType.FullWidth;
+
+    [Parameter]
+    [Category(CategoryTypes.Divider.Appearance)]
+    public string? VerticalSpacing { get; set; }
+
+    /// <summary>
+    /// The style combined with the vertical spacing
+    /// </summary>
+    private string NewStyle
+        => new StyleBuilder()
+            .AddStyle("margin-top", VerticalSpacing, VerticalSpacing != null)
+            .AddStyle("margin-bottom", VerticalSpacing, VerticalSpacing != null)
+            .AddStyle(Style).Build();
 
 }
