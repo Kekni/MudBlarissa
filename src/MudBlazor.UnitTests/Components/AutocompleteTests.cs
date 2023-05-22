@@ -170,6 +170,29 @@ namespace MudBlazor.UnitTests.Components
             comp.WaitForAssertion(() => autocomplete.Value.Should().Be("Austria"));
             autocomplete.Text.Should().Be("Austria");
         }
+        
+        /// <summary>
+        /// Test to cover issue #5993.
+        /// </summary>
+        [Test]
+        public async Task AutocompleteImmediateCoerceValueTest()
+        {
+            var comp = Context.RenderComponent<AutocompleteTest1>();
+            var autocompletecomp = comp.FindComponent<MudAutocomplete<string>>();
+            var autocomplete = autocompletecomp.Instance;
+            autocompletecomp.SetParam(x => x.DebounceInterval, 0);
+            autocompletecomp.SetParam(x => x.CoerceValue, true);
+            autocompletecomp.SetParam(x => x.CoerceText, false);
+            autocompletecomp.SetParam(x => x.Immediate, true);
+            // check initial state
+            autocomplete.Value.Should().Be("Alabama");
+            autocomplete.Text.Should().Be("Alabama");
+            // set a value the search won't find
+            autocompletecomp.SetParam(p => p.Text, "Austria"); // not part of the U.S.
+            
+            comp.WaitForAssertion(() => autocomplete.Value.Should().Be("Austria"));
+            autocomplete.Text.Should().Be("Austria");
+        }
 
         [Test]
         public async Task AutocompleteCoercionOffTest()
@@ -1204,6 +1227,40 @@ namespace MudBlazor.UnitTests.Components
             // try clicking 'Test'
             matchingStates.Single(s => s.Markup.Contains("Test")).Find("div.mud-list-item").Click();
             component.WaitForAssertion(() => autocompleteInstance.Text.Should().Be(string.Empty));
+        }
+
+
+        /// <summary>
+        /// ListEndTemplate should render when there are no items
+        /// </summary>
+        [Test]
+        public async Task Autocomplete_Should_LoadListStartWhenSet()
+        {
+            var comp = Context.RenderComponent<AutocompleteListStartRendersTest>();
+
+
+            var inputControl = comp.Find("div.mud-input-control");
+            inputControl.Click();
+            comp.WaitForAssertion(() => comp.Find("div.mud-popover").ClassList.Should().Contain("mud-popover-open"));
+
+            var mudText = comp.FindAll("p.mud-typography");
+            mudText[mudText.Count - 1].InnerHtml.Should().Contain("StartList_Content"); //ensure the text is shown
+        }
+
+        /// <summary>
+        /// ListEndTemplate should render when there are no items
+        /// </summary>
+        [Test]
+        public async Task Autocomplete_Should_LoadListEndWhenSet()
+        {
+            var comp = Context.RenderComponent<AutocompleteListEndRendersTest>();
+
+            var inputControl = comp.Find("div.mud-input-control");
+            inputControl.Click();
+            comp.WaitForAssertion(() => comp.Find("div.mud-popover").ClassList.Should().Contain("mud-popover-open"));
+
+            var mudText = comp.FindAll("p.mud-typography");
+            mudText[mudText.Count - 1].InnerHtml.Should().Contain("EndList_Content"); //ensure the text is shown
         }
     }
 }
