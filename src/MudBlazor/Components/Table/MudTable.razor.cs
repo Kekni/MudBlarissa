@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Extensions;
-
+using MudBlazor.Utilities;
 
 namespace MudBlazor
 {
@@ -349,6 +349,19 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Table.Grouping)]
         public RenderFragment<TableGroupData<object, T>> GroupFooterTemplate { get; set; }
+
+        /// <summary>
+        /// If set, the table-layout is changed to fixed
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.Table.Appearance)]
+        public bool FixedStyle { get; set; }
+
+        /// <summary>
+        /// Style attribute of table-tag
+        /// </summary>
+        private string DirectTableStyle
+            => new StyleBuilder().AddStyle("table-layout", "fixed",  FixedStyle).Build();
 
         private IEnumerable<T> _preEditSort;
         private bool _currentRenderFilteredItemsCached;
